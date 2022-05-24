@@ -1,0 +1,92 @@
+#root {
+  margin: 20px auto;
+  padding: 20px;
+  min-height: 170px;
+  width: 600px;
+  display: flex;
+  flex-direction: column;
+  gap: 30px;
+  box-shadow: 0 0 30px rgb(210, 214, 234);
+  border-radius: 20px;
+}
+
+.msg {
+  top: 110px;
+  margin: 0 auto;
+  position: absolute;
+  z-index: -2;
+  font-size: 36px;
+  font-weight: bold;
+  text-align: center;
+  color: #dee9fb;
+}
+
+.btn {
+  width: 120px;
+}
+
+.menu {
+  display: flex;
+  gap: 20px;  
+}
+
+.menu-form {
+  width: 100%;
+  display: flex;
+  gap: 20px;
+}
+
+.task-list {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+.task-body {
+  padding: 25px;
+  display: flex;
+}
+
+.form-control {
+  height: 50px;
+  max-width: 340px;
+}
+
+#text, #date {
+  border-radius: 0;
+}
+
+#date {
+  font-size: 12px;
+  text-align: center;
+  width: 70px;
+}
+
+.form-check {
+  background-color: #fff;
+  border-radius: 10px;
+  box-shadow: 0 0 20px rgb(210, 214, 234);
+}
+
+.task-body > .delete {
+  height: 50px;
+  width: 50px;
+  border-top-left-radius: 0;
+  border-bottom-left-radius: 0;
+}
+
+#lg {
+  border-top-right-radius: 0;
+  border-bottom-right-radius: 0;
+  margin-top: 0;
+  height: 50px;
+  width: 50px;
+}
+
+.done {
+  background-color: #a3c7fc;
+}
+
+.done #text {
+  text-decoration: line-through;
+}
