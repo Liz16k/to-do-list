@@ -12,17 +12,28 @@
 <body>
   <div id="root">
     <div class="menu">
-      <button class="btn btn-primary" id="del-all">Delete All</button>
-      <form class="menu-form">
-        <input class="form-control" id="input" type="text" placeholder="Enter to do...">
-        <button class="btn btn-primary" type="submit">Add</button>
-      </form>
+      <div class="lvl">
+        <button class="btn btn-primary" id="del-all">Delete All</button>
+        <button class="btn btn-primary" id="del-last">Delete Last</button>
+        <form class="menu-form">
+          <input class="form-control" id="input" type="text" placeholder="Enter to do...">
+          <button class="btn btn-primary" type="submit">Add</button>
+        </form>
+      </div>
+      <div class="lvl">
+        <div class="btn" id="counter"></div>
+        <div class="btn" id="counter"></div>
+        <button class="btn btn-primary" id="show-all">Show All</button>
+        <button class="btn btn-primary" id="show-completed">Show Completed</button>
+        <form class="menu-form">
+          <input class="form-control" id="input-srch" type="text" placeholder="Search...">
+        </form>
+      </div>
     </div>
-    <div class="msg">Oops, you don't have any tasks</div>
     <div class="task-list">
       
     </div>
   </div>
-<script src="script.js"></script>
+<script src="./script.js" type="module"></script>
 </body>
 </html>

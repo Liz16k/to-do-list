@@ -1,6 +1,5 @@
-$ = selector => document.querySelector(selector)
-$$ = selector => [...document.querySelectorAll(selector)]
-const format = (time) => (time > 9) ? time : '0' + time
+import { $, $$ } from './modules/dom-helper.js'
+import { Todo } from './modules/constructors.js'
 
 const templateTodo = (task) => {
   const checkedAttr = task.isChecked ? 'checked' : ''
@@ -17,20 +16,29 @@ const templateTodo = (task) => {
 let todos = JSON.parse(localStorage.getItem('todos'))
 
 let data = (todos) ? [...todos] : []
+console.log(data);
 let todoJSON = JSON.stringify(data)
-localStorage.setItem('todos', todoJSON)
 
 let inputContent = $('#input')
+let inputSearchContent = $('#input-srch')
 const list = $('.task-list')
 const inputForm = $('.menu-form')
 const delAll = $('#del-all')
+const delLast = $('#del-last')
+const showAll = $('#show-all')
+const showCompleted = $('#show-completed')
+const counters = $$('#counter')
 
 render()
 
 inputForm.addEventListener('submit', handleSubmitForm)
+inputSearchContent.addEventListener('input', handleChangeSearchForm)
 delAll.addEventListener('click', handleClickBtnDelAll)
 list.addEventListener('click', handleClickBtnDel)
 list.addEventListener('change', handleInputChange)
+delLast.addEventListener('click', handleClickBtnLast)
+showCompleted.addEventListener('click', handleClickBtnShowDone)
+showAll.addEventListener('click', handleClickBtnShowAll)
 
 function handleSubmitForm (e) {
   e.preventDefault()
@@ -56,6 +64,13 @@ function handleInputChange (e) {
   }
 }
 
+function handleChangeSearchForm (e) {
+  const content = e.target.value
+  if (content) {
+    render('search', content)
+  } else render()
+}
+
 function handleClickBtnDel (e) {
   if (e.target.classList.contains('delete')) {
     const task = e.target.closest('.task-body')
@@ -74,27 +89,33 @@ function handleClickBtnDelAll () {
   render()
 }
 
-function Todo (content) {
-  const time = new Time()
-  this.id = time.date.getTime()
-  this.content = content
-  this.createdAt = time.formatTime
-  this.isChecked = false
+function handleClickBtnLast () {
+  data.length -= 1
+  render()
 }
 
-function Time () {
-  const date = new Date() 
-  this.date = date
-  this.day = date.getDate()
-  this.month = date.getMonth() + 1
-  this.hour = date.getHours()
-  this.minute = date.getMinutes()
-  this.formatTime = `${format(this.hour)}:${format(this.minute)} ${format(this.day)}.${format(this.month)}`
+function handleClickBtnShowAll () {
+  render()
 }
 
-function render () {
+function handleClickBtnShowDone () {
+  render(true)
+}
+
+function render (filter = false, content = '') {
+  let dataRender = data;
+  if (filter) {
+    dataRender = (filter == 'search') ?
+      data.filter(task => task.content.includes(content)) :
+      data.filter(task => task.isChecked)
+  }
+
   list.innerHTML = ''
-  list.innerHTML = data.reduce((html, task) => templateTodo(task) + html , '')
+  list.innerHTML = dataRender.reduce((html, task) => templateTodo(task) + html , '')
+
   todoJSON = JSON.stringify(data)
   localStorage.setItem('todos', todoJSON)
+
+  counters[0].textContent = `All: ${data.length}`
+  counters[1].textContent = `Completed: ${data.reduce((count, task) => count += task.isChecked, 0)}`
 }

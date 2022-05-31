@@ -1,8 +1,7 @@
 #root {
   margin: 20px auto;
   padding: 20px;
-  min-height: 170px;
-  width: 600px;
+  width: 750px;
   display: flex;
   flex-direction: column;
   gap: 30px;
@@ -10,23 +9,24 @@
   border-radius: 20px;
 }
 
-.msg {
-  top: 110px;
-  margin: 0 auto;
-  position: absolute;
-  z-index: -2;
-  font-size: 2.25rem;
-  font-weight: bold;
-  text-align: center;
-  color: #dee9fb;
-  overflow: hidden;
+.menu {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
 }
 
 .btn {
-  width: 120px;
+  min-width: fit-content;
+  max-height: 50px;
 }
 
-.menu {
+#counter {
+  cursor: auto;
+  border: 1px solid #000;
+  padding: 12px;
+}
+
+.lvl {
   display: flex;
   gap: 20px;  
 }
@@ -46,27 +46,25 @@
 .task-body {
   padding: 25px;
   display: flex;
+  justify-content: center;
+  background-color: #fff;
+  border-radius: 10px;
+  box-shadow: 0 0 20px rgb(210, 214, 234);
 }
 
 .form-control {
   height: 50px;
-  max-width: 340px;
 }
 
 #text, #date {
   border-radius: 0;
+  max-width: 60%;
 }
 
 #date {
   font-size: 12px;
   text-align: center;
   width: 70px;
-}
-
-.task-body {
-  background-color: #fff;
-  border-radius: 10px;
-  box-shadow: 0 0 20px rgb(210, 214, 234);
 }
 
 .task-body > .delete {
